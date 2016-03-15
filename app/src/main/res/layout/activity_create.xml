@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main" tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/pick_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="start date" />
+
+        <Button
+            android:id="@+id/pick_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="start time" />
+
+        <Button
+            android:id="@+id/delay_minus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Repeat after minus" />
+
+        <Button
+            android:id="@+id/repeat_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="repeat number" />
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/suggesstion_contact_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="To:"
+            class = "com.leminhtuan.myapplication.message_schedual.views.SuggesstionContactView"/>
+
+        <EditText
+            android:id="@+id/input_text"
+            android:hint="Enter:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress|textMultiLine" />
+    </LinearLayout>
+</RelativeLayout>
