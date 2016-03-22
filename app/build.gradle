@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.klinkerapps:android-chips:1.0.1@aar'
 }

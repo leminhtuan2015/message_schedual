@@ -9,7 +9,6 @@ import android.text.TextUtils;
 
 import com.leminhtuan.myapplication.message_schedual.models.Contact;
 import com.leminhtuan.myapplication.message_schedual.models.MessageSchedual;
-import com.leminhtuan.myapplication.message_schedual.services.ContactService;
 import com.leminhtuan.myapplication.message_schedual.utils.DateConverter;
 
 import java.util.ArrayList;
@@ -112,7 +111,7 @@ public class MessageSchedualDAO extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         HashSet<String> numbers = new HashSet<String>();
         for (Contact contact: messageSchedual.getContacts()){
-            numbers.add(contact.getNumber());
+            numbers.add(contact.getName()+"-"+contact.getNumber());
         }
         contentValues.put("number", TextUtils.join(",", numbers));
         contentValues.put("text", messageSchedual.getText());
@@ -128,11 +127,10 @@ public class MessageSchedualDAO extends SQLiteOpenHelper {
     private HashSet<Contact> contacts(String numbersText){
         HashSet<Contact> contacts = new HashSet<Contact>();
         String[] numberArray = TextUtils.split(numbersText, ",");
-        HashSet<String> numbers = new HashSet<String>(Arrays.asList(numberArray));
 
-        for (String number : numbers) {
-            Contact contactByNumber = ContactService.contactsMapping(context).get(number);
-            contacts.add(new Contact(contactByNumber.getName(), number, contactByNumber.getType()));
+        for (String number : Arrays.asList(numberArray)) {
+            String[] nameAndNumber= number.split("-");
+            contacts.add(new Contact(nameAndNumber[0], nameAndNumber[1], null));
         }
 
         return contacts;

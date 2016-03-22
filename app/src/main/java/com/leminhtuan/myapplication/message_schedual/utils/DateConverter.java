@@ -25,7 +25,7 @@ public class DateConverter {
     }
 
     public static String parse(Date date){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd:MM:yyyy - hh:mm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd:MM:yyyy - HH:mm");
         String dateString = simpleDateFormat.format(date);
         return dateString;
     }

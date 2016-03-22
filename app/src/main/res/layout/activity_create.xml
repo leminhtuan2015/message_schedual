@@ -12,18 +12,35 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<MultiAutoCompleteTextView-->
+                <!--android:id="@+id/suggesstion_contact"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="To"-->
+                <!--class = "com.leminhtuan.myapplication.message_schedual.views.SuggesstionContactView"/>-->
+        <!--</android.support.design.widget.TextInputLayout>-->
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <MultiAutoCompleteTextView
-                android:id="@+id/suggesstion_contact"
+            <com.android.ex.chips.RecipientEditTextView
+                style="@android:style/Widget.Holo.EditText"
+                android:id="@+id/suggesstion_contact_lib"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="To"
-                class = "com.leminhtuan.myapplication.message_schedual.views.SuggesstionContactView"/>
+                android:hint="To" />
         </android.support.design.widget.TextInputLayout>
+
+        <Space
+            android:layout_width="1px"
+            android:layout_height="20dp" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -35,17 +52,16 @@
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
                     android:fillViewport="true">
-                    <android.support.design.widget.TextInputLayout
+                    <EditText
+                        android:id="@+id/input_text"
+                        android:gravity="top"
+                        android:hint="Text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/input_text"
-                            android:hint="Text"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textMultiLine" />
-                    </android.support.design.widget.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:background="@drawable/shape"/>
                 </ScrollView>
 
                 <LinearLayout
@@ -69,7 +85,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="0dp"
                             android:layout_weight=".6"
-                            android:gravity="right"
+                            android:gravity="center|bottom"
                             style="@android:style/Widget.Holo.Light.Spinner" />
 
                         <Button
@@ -78,7 +94,7 @@
                             android:layout_width="0dp"
                             android:layout_weight=".4"
                             android:textSize="20dp"
-                            android:gravity="right"
+                            android:gravity="center|bottom"
                             style="@android:style/Widget.Holo.Light.Spinner" />
                     </LinearLayout>
                 </LinearLayout>
@@ -105,6 +121,8 @@
                             android:backgroundTint="@color/colorPrimary"
                             android:id="@+id/spinner_repeat_at"
                             android:spinnerMode="dialog"
+                            android:gravity="center|bottom"
+                            android:layout_gravity="center|bottom"
                             style="@android:style/Widget.Holo.Light.Spinner"/>
 
                         <Switch
@@ -123,6 +141,7 @@
                     android:layout_marginTop="20dp">
 
                     <TextView
+                        android:id="@+id/text_repeat_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="REPEAT TIME" />
@@ -138,6 +157,7 @@
                             android:layout_weight=".6"
                             android:textSize="20dp"
                             android:paddingLeft="10dp"
+                            android:gravity="center|bottom"
                             style="@android:style/Widget.Holo.Light.Spinner" />
 
                         <Switch

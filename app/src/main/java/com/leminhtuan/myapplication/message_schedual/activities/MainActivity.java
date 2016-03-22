@@ -31,7 +31,6 @@ import com.leminhtuan.myapplication.message_schedual.adapters.ListMessageAdapter
 import com.leminhtuan.myapplication.message_schedual.daos.MessageSchedualDAO;
 import com.leminhtuan.myapplication.message_schedual.events.MessageSentEvent;
 import com.leminhtuan.myapplication.message_schedual.models.MessageSchedual;
-import com.leminhtuan.myapplication.message_schedual.services.ContactService;
 import com.leminhtuan.myapplication.message_schedual.services.MessageService;
 import com.leminhtuan.myapplication.message_schedual.utils.HardCode;
 
@@ -246,7 +245,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         @Override
         protected Object doInBackground(Object[] params) {
-            ContactService.contactsMapping(MainActivity.this);
             dataSet.clear();
             dataSet.addAll(messageSchedualDAO.all());
             return null;

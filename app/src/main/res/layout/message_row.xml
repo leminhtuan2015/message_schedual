@@ -21,7 +21,9 @@
             android:id="@+id/text_view_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="14dp"/>
+            android:textSize="14dp"
+            android:ellipsize="end"
+            android:singleLine="true"/>
 
         <TextView
             android:id="@+id/text_view_number"
@@ -30,15 +32,15 @@
             android:textSize="14dp" />
 
         <TextView
+            android:id="@+id/text_view_delay_minus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
             android:id="@+id/text_view_status"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="12dp" />
-
-        <TextView
-            android:id="@+id/text_view_delay_minus"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/text_view_id"

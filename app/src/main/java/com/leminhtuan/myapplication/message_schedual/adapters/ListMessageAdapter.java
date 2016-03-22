@@ -12,6 +12,7 @@ import com.leminhtuan.myapplication.R;
 import com.leminhtuan.myapplication.message_schedual.models.Contact;
 import com.leminhtuan.myapplication.message_schedual.models.MessageSchedual;
 import com.leminhtuan.myapplication.message_schedual.utils.DateConverter;
+import com.leminhtuan.myapplication.message_schedual.utils.HardCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,42 +46,55 @@ public class ListMessageAdapter extends ArrayAdapter<MessageSchedual> {
             TextView delayMinus = (TextView) v.findViewById(R.id.text_view_delay_minus);
             TextView status = (TextView) v.findViewById(R.id.text_view_status);
 
-            if (time != null) {
-                time.setText("" + DateConverter.parse(messageSchedual.getDate()));
+            time.setText("" + DateConverter.parse(messageSchedual.getDate()));
+
+            List<String> contactInfo = new ArrayList<String >();
+            for(Contact contact: messageSchedual.getContacts()){
+                contactInfo.add(contact.getName() + "<" + contact.getNumber() + ">");
             }
+            number.setText("To: " + TextUtils.join("; ", contactInfo));
 
-            if (text != null) {
-                text.setText("Text : " + messageSchedual.getText());
-            }
+            text.setText("Text : " + messageSchedual.getText());
 
-            if (number != null) {
-                List<String> contactInfo = new ArrayList<String >();
-                for(Contact contact: messageSchedual.getContacts()){
-                    contactInfo.add(contact.getName() + "<" + contact.getNumber() + ">");
-                }
-                number.setText("To : " + TextUtils.join("; ", contactInfo));
-            }
+            int sentNumber = messageSchedual.getSentNumber();
+            int failNumber = messageSchedual.getFailNumber();
+            int repeatNumber = messageSchedual.getRepeatNumber();
+            int pendingNumber = repeatNumber - sentNumber - failNumber;
+            String statusView = "";
+            if(repeatNumber == 0)
+                statusView = "Sent: " + sentNumber + " Fail: " + failNumber;
+            else
+                statusView = "Repeat time: " + repeatNumber + " Pending: " + pendingNumber + " Sent: " + sentNumber + " Fail: " + failNumber;
+            status.setText("" + statusView);
 
-            if (status != null) {
-                int sentNumber = messageSchedual.getSentNumber();
-                int failNumber = messageSchedual.getFailNumber();
-                int repeatNumber = messageSchedual.getRepeatNumber();
-                int pendingNumber = repeatNumber - sentNumber - failNumber;
-                String statusView = "";
-
-                if(repeatNumber == 0)
-                    statusView = " Sent: " + sentNumber;
-                else
-                    statusView = "Repeat time: " + repeatNumber + " Pending: " + pendingNumber + " Sent: " + sentNumber + " Fail :" + failNumber;
-
-                status.setText("" + statusView);
-            }
-
-            if(delayMinus != null){
-                delayMinus.setText("Repeat minus: " +messageSchedual.getDelayMinus());
-            }
+            delayMinus.setText("Repeat: " +caculateRepeat(messageSchedual.getDelayMinus()));
         }
 
         return v;
+    }
+
+    private String caculateRepeat(int minus) {
+        String repeat = "None";
+
+        if(minus == 5)
+            return HardCode.Every_5_Minutes;
+        else if(minus == 15)
+            return HardCode.Every_15_Minutes;
+        else if(minus == 30)
+            return HardCode.Every_30_Minutes;
+        else if(minus == 45)
+            return HardCode.Every_45_Minutes;
+        else if(minus == 60)
+            return HardCode.Every_hour;
+        else if(minus == 24 * 60)
+            return HardCode.Every_day;
+        else if(minus == 7 * 24 * 60)
+            return HardCode.Every_week;
+        else if(minus == 30 * 24 * 60)
+            return HardCode.Every_month;
+        else if(minus == 365 * 24* 60)
+            return HardCode.Every_year;
+
+        return repeat;
     }
 }
